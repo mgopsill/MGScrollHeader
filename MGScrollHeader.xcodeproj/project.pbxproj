@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4D8CB53720985A44006849A2 /* MGScrollHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8CB53520985A44006849A2 /* MGScrollHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D8CB53E20985A59006849A2 /* ScrollableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CB53D20985A59006849A2 /* ScrollableHeaderView.swift */; };
+		4D8CB54020985A70006849A2 /* TableViewControllerWithHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CB53F20985A70006849A2 /* TableViewControllerWithHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D8CB53220985A44006849A2 /* MGScrollHeader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGScrollHeader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8CB53520985A44006849A2 /* MGScrollHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGScrollHeader.h; sourceTree = "<group>"; };
 		4D8CB53620985A44006849A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D8CB53D20985A59006849A2 /* ScrollableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableHeaderView.swift; sourceTree = "<group>"; };
+		4D8CB53F20985A70006849A2 /* TableViewControllerWithHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,8 @@
 			children = (
 				4D8CB53520985A44006849A2 /* MGScrollHeader.h */,
 				4D8CB53620985A44006849A2 /* Info.plist */,
+				4D8CB53D20985A59006849A2 /* ScrollableHeaderView.swift */,
+				4D8CB53F20985A70006849A2 /* TableViewControllerWithHeader.swift */,
 			);
 			path = MGScrollHeader;
 			sourceTree = "<group>";
@@ -95,6 +101,7 @@
 				TargetAttributes = {
 					4D8CB53120985A44006849A2 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -130,6 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D8CB54020985A70006849A2 /* TableViewControllerWithHeader.swift in Sources */,
+				4D8CB53E20985A59006849A2 /* ScrollableHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +268,7 @@
 		4D8CB53B20985A44006849A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -275,14 +285,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikegopsill.MGScrollHeader;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		4D8CB53C20985A44006849A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -300,7 +312,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
