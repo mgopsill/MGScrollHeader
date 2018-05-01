@@ -8,9 +8,10 @@
 
 import UIKit
 
-public class TableViewControllerWithHeader: UITableViewController {
+public class TableViewControllerWithHeader: UIViewController {
     
     var scrollableHeaderView: ScrollableHeaderView!
+    var tableView: UITableView!
     
     var scrollableHeaderViewTopConstraint: NSLayoutConstraint!
     private let constraintRangeForHeaderView = (CGFloat(-190)..<CGFloat(0))
@@ -59,11 +60,9 @@ public class TableViewControllerWithHeader: UITableViewController {
 }
 
 
-extension TableViewControllerWithHeader {
+extension TableViewControllerWithHeader: UITableViewDelegate {
     
-    override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        super.scrollViewDidScroll(scrollView)
-        
+     public func scrollViewDidScroll(_ scrollView: UIScrollView) {        
         scrollableHeaderViewTopConstraint = view.constraints[0]
         
         // Compress the top view

@@ -8,17 +8,22 @@
 
 import UIKit
 
-public class ScrollableHeaderView: UIView {
+private class ScrollableHeaderView: UIView {
     
-    public var backgroundImageView: UIImageView?
-    public var title: UILabel?
-    public var subtitle: UILabel?
+    private var backgroundImageView: UIImageView?
+    private var title: UILabel?
+    private var subtitle: UILabel?
     
     // TODO: Possibly add states so headerview can have two states
     // TODO: Allow injection of a background view
     // TODO: Possibly allow configuration of constraints
     
     // MARK: Initialisers
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
     
     init(frame: CGRect,
          backgroundImageView: UIImageView? = nil,
@@ -32,11 +37,7 @@ public class ScrollableHeaderView: UIView {
         
         setup()
     }
-    
-    convenience override init(frame: CGRect) {
-        self.init(frame: frame)
-    }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -68,7 +69,6 @@ public class ScrollableHeaderView: UIView {
         guard let title = title else { return }
         title.text = "Let there be a title!"
         title.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.thin)
-        title.textColor = .white
         title.textAlignment = .center
     }
     
@@ -81,7 +81,8 @@ public class ScrollableHeaderView: UIView {
     
     private func defaultSubtitle() {
         guard let subtitle = subtitle else { return }
-        subtitle.text = "Today is a beautiful day for a subtitle."
+        subtitle.text = "A beautiful day for a subtitle."
+        subtitle.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.thin)
         subtitle.textAlignment = .center
     }
     
@@ -120,5 +121,4 @@ public class ScrollableHeaderView: UIView {
         subtitle?.textColor = subtitle?.textColor.withAlphaComponent(alpha)
         backgroundImageView?.alpha = alpha
     }
-    
 }
