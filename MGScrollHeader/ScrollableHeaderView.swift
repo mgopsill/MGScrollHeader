@@ -8,7 +8,7 @@
 
 import UIKit
 
-private class ScrollableHeaderView: UIView {
+class ScrollableHeaderView: UIView {
     
     private var backgroundImageView: UIImageView?
     private var title: UILabel?
