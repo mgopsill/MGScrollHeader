@@ -33,14 +33,13 @@ public class TableViewControllerWithHeader: UIViewController {
         tableView = UITableView()
         tableView.frame = view.bounds
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.sectionHeaderHeight = 0
-        tableView.sectionFooterHeight = 0
         tableView.delegate = self
         view.addSubview(tableView)
     }
     
     private func setupHeader(){
-        scrollableHeaderView = ScrollableHeaderView()
+        let height = constraintRangeForHeaderView.upperBound - constraintRangeForHeaderView.lowerBound
+        scrollableHeaderView = ScrollableHeaderView(height: height)
         view.addSubview(scrollableHeaderView)
     }
     
@@ -86,7 +85,9 @@ extension TableViewControllerWithHeader: UITableViewDelegate {
         }
         
         if scrollableHeaderViewTopConstraint.constant < constraintRangeForHeaderTransparency.upperBound && scrollableHeaderViewTopConstraint.constant > constraintRangeForHeaderTransparency.lowerBound {
-            let alpha: CGFloat =  (scrollableHeaderViewTopConstraint.constant + 130)*(1)/(-30+130)
+            let constraintRange = constraintRangeForHeaderTransparency.upperBound - constraintRangeForHeaderTransparency.lowerBound
+            let transparencyRange = scrollableHeaderViewTopConstraint.constant - constraintRangeForHeaderTransparency.lowerBound
+            let alpha: CGFloat =  transparencyRange / constraintRange
             scrollableHeaderView.updateLabelsAlpha(with: alpha)
         }
         

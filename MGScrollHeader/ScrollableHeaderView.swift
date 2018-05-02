@@ -10,31 +10,19 @@ import UIKit
 
 class ScrollableHeaderView: UIView {
     
-    private var backgroundImageView: UIImageView?
-    private var title: UILabel?
-    private var subtitle: UILabel?
+    public var fadeImage: Bool = false
     
-    // TODO: Possibly add states so headerview can have two states
-    // TODO: Allow injection of a background view
-    // TODO: Possibly allow configuration of constraints
+    private var backgroundImageView: UIImageView!
+    private var title: UILabel!
+    private var subtitle: UILabel!
+    private var height: CGFloat!
+    private var navigationBarHeight: CGFloat = 64.0
     
     // MARK: Initialisers
     
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    init(frame: CGRect,
-         backgroundImageView: UIImageView? = nil,
-         title: UILabel? = nil,
-         subtitle: UILabel? = nil) {
-        
-        self.backgroundImageView = backgroundImageView
-        self.title = title
-        self.subtitle = subtitle
-        super.init(frame: frame)
-        
+    init(height: CGFloat) {
+        super.init(frame: CGRect())
+        self.height = height + navigationBarHeight
         setup()
     }
 
@@ -53,36 +41,23 @@ class ScrollableHeaderView: UIView {
     }
     
     private func setupBackground() {
-        if backgroundImageView == nil {
-            backgroundImageView = UIImageView(image: nil)
-        }
+        backgroundImageView = UIImageView(image: nil)
+        backgroundColor = UIColor(red: 0.09, green: 0.34, blue: 0.55, alpha: 1.0)
     }
     
     private func setupTitle() {
-        if title == nil {
-            title = UILabel()
-            defaultTitle()
-        }
-    }
-    
-    private func defaultTitle() {
-        guard let title = title else { return }
+        title = UILabel()
         title.text = "Let there be a title!"
         title.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.thin)
+        title.textColor = .white
         title.textAlignment = .center
     }
     
     private func setupSubtitle() {
-        if subtitle == nil {
-            subtitle = UILabel()
-            defaultSubtitle()
-        }
-    }
-    
-    private func defaultSubtitle() {
-        guard let subtitle = subtitle else { return }
-        subtitle.text = "A beautiful day for a subtitle."
+        subtitle = UILabel()
+        subtitle.text = "A great day for a subtitle"
         subtitle.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.thin)
+        subtitle.textColor = .white
         subtitle.textAlignment = .center
     }
     
@@ -97,7 +72,7 @@ class ScrollableHeaderView: UIView {
         addSubview(subtitle)
         
         let constraints:[NSLayoutConstraint] = [
-            self.heightAnchor.constraint(equalToConstant: 254.0),
+            self.heightAnchor.constraint(equalToConstant: height),
             backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -119,6 +94,8 @@ class ScrollableHeaderView: UIView {
     public func updateLabelsAlpha(with alpha: CGFloat) {
         title?.textColor = title?.textColor.withAlphaComponent(alpha)
         subtitle?.textColor = subtitle?.textColor.withAlphaComponent(alpha)
-        backgroundImageView?.alpha = alpha
+        if fadeImage {
+            backgroundImageView.alpha = alpha
+        }
     }
 }
